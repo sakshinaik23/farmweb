@@ -47,8 +47,8 @@ const features = [
 
 export default function ExplorStyle() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-16 sm:py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
 
         {/* Section Header */}
         <motion.div
@@ -56,21 +56,21 @@ export default function ExplorStyle() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-20"
         >
-          <p className="font-oswald text-xs tracking-[0.32em] text-gray-500 mb-3 font-medium">
+          <p className="font-oswald text-[9px] sm:text-xs tracking-[0.32em] text-gray-500 mb-2 sm:mb-3 font-medium">
             WHAT'S YOUR TRAVEL STYLE?
           </p>
-          <h2 className="font-oswald text-3xl md:text-5xl font-extrabold text-gray-900 leading-snug drop-shadow-lg">
+          <h2 className="font-oswald text-2xl sm:text-3xl md:text-5xl font-extrabold text-gray-900 leading-snug drop-shadow-lg">
             Discover experiences at Vrindavan Farms
           </h2>
         </motion.div>
 
         {/* Zig-Zag Split */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 sm:gap-x-16 gap-y-8 sm:gap-y-10">
 
           {/* Left Column */}
-          <div className="flex flex-col gap-20 transform md:translate-x-20 md:translate-y-10">
+          <div className="flex flex-col gap-12 sm:gap-20 transform md:translate-x-20 md:translate-y-10">
             {features
               .filter((f) => f.column === "left")
               .map((item, idx) => (
@@ -80,16 +80,16 @@ export default function ExplorStyle() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.7, ease: "easeOut" as const }}
-                  className={`flex flex-col gap-2 ${idx === 0 ? "mt-5" : "mt-0"}`}
+                  className={`flex flex-col gap-2 ${idx === 0 ? "mt-2 sm:mt-5" : "mt-0"}`}
                 >
-                  <h3 className={`font-oswald text-lg md:text-2xl md:text-3xl font-bold ${item.color}`}>
+                  <h3 className={`font-oswald text-lg sm:text-2xl md:text-3xl font-bold ${item.color}`}>
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 italic text-sm md:text-base md:text-lg leading-relaxed font-medium">
+                  <p className="text-gray-600 italic text-xs sm:text-sm md:text-base leading-relaxed font-medium">
                     {item.desc}
                   </p>
 
-                  <div className="relative h-70 md:h-100 w-105 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="relative h-44 sm:h-70 md:h-100 w-full sm:w-105 rounded-3xl overflow-hidden shadow-2xl">
                     <Image src={item.img} alt={item.title} fill className="object-cover" />
                     <div className="absolute inset-0 bg-black/10" />
                   </div>
@@ -98,7 +98,7 @@ export default function ExplorStyle() {
           </div>
 
           {/* Right Column */}
-          <div className="flex flex-col gap-20 md:-translate-y-10">
+          <div className="flex flex-col gap-12 sm:gap-20 md:-translate-y-10">
             {features
               .filter((f) => f.column === "right")
               .map((item, idx) => (
@@ -108,17 +108,17 @@ export default function ExplorStyle() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.7, ease: "easeOut" as const }}
-                  className={`flex flex-col gap-2 ${idx === 1 ? "mt-5" : "mt-0"}`}
+                  className={`flex flex-col gap-2 ${idx === 1 ? "mt-2 sm:mt-5" : "mt-0"}`}
                 >
-                  <div className="relative h-72 md:h-100 w-105 rounded-3xl overflow-hidden shadow-2xl">
+                  <div className="relative h-44 sm:h-72 md:h-100 w-full sm:w-105 rounded-3xl overflow-hidden shadow-2xl">
                     <Image src={item.img} alt={item.title} fill className="object-cover" />
                     <div className="absolute inset-0 bg-black/10" />
                   </div>
 
-                  <h3 className={`font-oswald text-lg md:text-2xl md:text-3xl font-bold ${item.color}`}>
+                  <h3 className={`font-oswald text-lg sm:text-2xl md:text-3xl font-bold ${item.color}`}>
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 italic text-sm md:text-base md:text-lg leading-relaxed font-medium">
+                  <p className="text-gray-600 italic text-xs sm:text-sm md:text-lg leading-relaxed font-medium">
                     {item.desc}
                   </p>
                 </motion.div>
@@ -133,11 +133,11 @@ export default function ExplorStyle() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
           variants={fadeUp}
-          className="text-center mt-16"
+          className="text-center mt-8 sm:mt-16"
         >
           <a
             href="/booking"
-            className="font-oswald tracking-[0.2em] font-semibold inline-block mt-6 bg-green-800 hover:bg-green-700 text-white px-10 py-3 rounded-full text-xs shadow-lg transition-all duration-300"
+            className="font-oswald tracking-[0.2em] font-semibold inline-block bg-green-800 hover:bg-green-700 text-white px-6 sm:px-10 py-2 sm:py-3 rounded-full text-xs sm:text-sm shadow-lg transition-all duration-300"
           >
             BOOK YOUR EXPERIENCE NOW
           </a>

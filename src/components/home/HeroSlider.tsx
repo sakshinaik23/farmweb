@@ -70,7 +70,7 @@ export default function HeroSlider() {
               <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/0" />
 
               {/* TEXT */}
-              <div className="relative z-10 h-full flex items-center px-8 md:px-24">
+              <div className="relative z-10 h-full flex items-center px-4 sm:px-8 md:px-24">
                 <motion.div
                   key={activeIndex}
                   initial="hidden"
@@ -92,8 +92,8 @@ export default function HeroSlider() {
                     className="
                       font-bebas
                       uppercase
-                      text-[3.8rem] md:text-[5.2rem] lg:text-[6.4rem]
-                      leading-[0.88]
+                      text-[2.5rem] sm:text-[3.8rem] md:text-[5.2rem] lg:text-[6.4rem]
+                      leading-[1.1] sm:leading-[0.88]
                       tracking-tight
                       drop-shadow-2xl
                     "
@@ -108,8 +108,8 @@ export default function HeroSlider() {
                     }}
                     transition={{ duration: 0.9 }}
                     className="
-                      mt-4
-                      text-lg md:text-xl lg:text-2xl
+                      mt-2 sm:mt-4
+                      text-sm sm:text-lg md:text-xl lg:text-2xl
                       tracking-wide
                       text-white/90
                     "
@@ -123,18 +123,18 @@ export default function HeroSlider() {
                       visible: { opacity: 1, y: 0 },
                     }}
                     transition={{ duration: 0.8 }}
-                    className="mt-10 flex gap-6"
+                    className="mt-4 sm:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6"
                   >
                     <a
                       href="#experiences"
-                      className="bg-green-900 hover:bg-green-800 text-white px-10 py-4 text-base md:text-lg font-semibold rounded-full shadow-lg transition-all"
+                      className="bg-green-900 hover:bg-green-800 text-white px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold rounded-full shadow-lg transition-all text-center"
                     >
                       Explore Experiences
                     </a>
 
                     <a
                       href="#packages"
-                      className="border border-white text-white hover:bg-white hover:text-black px-10 py-4 text-base md:text-lg font-semibold rounded-full shadow-lg transition-all"
+                      className="border border-white text-white hover:bg-white hover:text-black px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold rounded-full shadow-lg transition-all text-center"
                     >
                       View Packages
                     </a>
