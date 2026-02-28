@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -19,42 +20,42 @@ interface Experience {
 const experiences: Experience[] = [
   {
     title: "Farm Stay Experience",
-    desc: "Peaceful stay surrounded by greenery and open lawns.",
+    desc: "Wake up to birds, fresh air, and peaceful greenery all around you.",
     tags: ["Family Friendly", "Nature", "Relaxing"],
     price: "From ₹2000 / night",
     image: "/images/exp1.webp",
   },
   {
     title: "Day Picnic",
-    desc: "Perfect one-day getaway with food & activities.",
+    desc: "One-day escape packed with food, games, pool fun & relaxation.",
     tags: ["Includes Lunch", "Pool Fun", "Games"],
     price: "₹1200 / person",
     image: "/images/exp2.webp",
   },
   {
     title: "Event Celebrations",
-    desc: "Birthdays, engagements & corporate gatherings.",
+    desc: "Celebrate birthdays, engagements & corporate events in open lawns.",
     tags: ["Decor", "Music", "Large Space"],
     price: "Custom Packages",
     image: "/images/exp3.webp",
   },
   {
     title: "Pool & Rain Dance",
-    desc: "Fun-filled water activities for all age groups.",
+    desc: "High-energy DJ rain dance & refreshing pool activities.",
     tags: ["DJ", "Water Fun", "Kids Friendly"],
     price: "Included in Picnic",
     image: "/images/exp4.webp",
   },
   {
     title: "Homely Food",
-    desc: "Fresh, authentic & delicious meals served hot.",
+    desc: "Freshly prepared authentic meals with local flavors.",
     tags: ["Pure Veg", "Local Taste", "Fresh"],
     price: "Included",
     image: "/images/exp5.webp",
   },
   {
     title: "Comfort & Relaxation",
-    desc: "Comfortable stay with premium amenities.",
+    desc: "Spacious rooms designed for comfort & peace of mind.",
     tags: ["AC Rooms", "Clean", "Peaceful"],
     price: "From ₹2500 / night",
     image: "/images/exp6.webp",
@@ -63,38 +64,47 @@ const experiences: Experience[] = [
 
 export default function ExperienceCarousel() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
+  const swiperRef = useRef<any>(null);
 
   return (
-    <section id="experiences" className="py-20 sm:py-28 bg-white overflow-hidden relative">
-      {/* SECTION HEADER */}
-      <div className="text-center mb-12 sm:mb-20 px-4 sm:px-0">
-        <h2 className="font-oswald uppercase tracking-[0.32em] text-[10px] sm:text-[11px] text-gray-500">
-          Experiences
-        </h2>
+    <section
+      id="experiences"
+      className="relative py-28 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden"
+    >
+      {/* Soft Luxury Background Glow */}
+      <div className="absolute -top-32 left-0 w-96 h-96 bg-green-200 blur-3xl opacity-20 rounded-full"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-200 blur-3xl opacity-20 rounded-full"></div>
 
-        <h3 className="font-oswald text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mt-2 sm:mt-4">
-          What you’ll enjoy at Vrindavan Farms
-        </h3>
+      {/* HEADER */}
+      <div className="relative text-center mb-20 px-6">
+        <p className="uppercase tracking-[0.35em] text-xs text-gray-500 font-semibold">
+          Experiences
+        </p>
+
+        <h2 className="mt-4 text-3xl sm:text-5xl font-bold text-gray-900">
+          Discover Moments at{" "}
+          <span className="text-gray-900">Vrindavan Farms</span>
+        </h2>
       </div>
 
       {/* CAROUSEL */}
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="relative max-w-7xl mx-auto px-6">
         <Swiper
           modules={[Navigation, Autoplay]}
-          slidesPerView={1}
-          spaceBetween={12}
           centeredSlides
-          breakpoints={{
-            640: { slidesPerView: 1, spaceBetween: 12 },
-            768: { slidesPerView: 2, spaceBetween: 16 },
-            1024: { slidesPerView: 3, spaceBetween: 18 },
-          }}
           loop
+          speed={900}
+          autoplay={{ delay: 2800, disableOnInteraction: false }}
           navigation={{
             nextEl: ".exp-next",
             prevEl: ".exp-prev",
           }}
-          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          breakpoints={{
+            0: { slidesPerView: 1.1, spaceBetween: 16 },
+            768: { slidesPerView: 2, spaceBetween: 24 },
+            1024: { slidesPerView: 3, spaceBetween: 30 },
+          }}
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         >
           {experiences.map((item, index) => (
@@ -102,55 +112,56 @@ export default function ExperienceCarousel() {
               {({ isActive }) => (
                 <motion.div
                   animate={{
-                    scale: isActive ? 1 : 0.95,
-                    opacity: isActive ? 1 : 0.55,
+                    scale: isActive ? 1 : 0.92,
+                    opacity: isActive ? 1 : 0.5,
+                    y: isActive ? 0 : 20,
                   }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="relative h-[400px] sm:h-[500px] md:h-[560px] rounded-2xl overflow-hidden shadow-2xl bg-white"
+                  transition={{ duration: 0.5 }}
+                  className="relative h-[520px] rounded-3xl overflow-hidden shadow-2xl group"
                 >
                   {/* IMAGE */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: `url(${item.image})` }}
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-105"
                   />
 
-                  {/* OVERLAY */}
-                  <div className="absolute inset-0 bg-black/35" />
+                  {/* Softer Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
-                  {/* TOP TITLE */}
-                  <div className="absolute top-0 left-0 right-0 z-10 p-4 sm:p-6">
-                    <h4 className="font-oswald text-xl sm:text-2xl md:text-3xl tracking-tight text-white leading-none">
+                  {/* CONTENT */}
+                  <div className="absolute bottom-0 p-8 text-white">
+                    <h3 className="text-2xl font-semibold mb-2">
                       {item.title}
-                    </h4>
-                  </div>
+                    </h3>
 
-                  {/* BOTTOM CONTENT */}
-                  <div className="relative z-10 h-full flex flex-col justify-end p-4 sm:p-6 text-white">
-                    <p className="text-sm sm:text-base md:text-base text-white/90 mb-3 sm:mb-5 leading-relaxed">
+                    <p className="text-sm text-white/80 mb-4 max-w-md">
                       {item.desc}
                     </p>
 
                     {/* TAGS */}
-                    <div className="flex flex-wrap gap-2 mb-3 sm:mb-5">
+                    <div className="flex flex-wrap gap-2 mb-4">
                       {item.tags.map((tag, i) => (
                         <span
                           key={i}
-                          className="text-xs sm:text-sm bg-white/25 px-2 sm:px-3 py-1 rounded-full backdrop-blur"
+                          className="text-xs border border-white/40 px-3 py-1 rounded-full backdrop-blur-md"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    {/* PRICE */}
-                    <p className="font-oswald text-sm sm:text-lg md:text-xl tracking-tight mb-3 sm:mb-6">
-                      {item.price}
-                    </p>
+                    {/* PRICE + BUTTON */}
+                    <div className="flex items-center justify-between max-w-md">
+                      <span className="font-semibold text-base">
+                        {item.price}
+                      </span>
 
-                    {/* CTA */}
-                    <button className="font-oswald tracking-[0.2em] bg-green-800 hover:bg-green-700 transition px-6 sm:px-10 py-2 sm:py-3 rounded-full text-xs sm:text-sm shadow-lg w-fit">
-                      Book Now
-                    </button>
+                      <button className="px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-300 hover:scale-105 transition text-sm font-semibold shadow-lg">
+                        Explore →
+                      </button>
+                    </div>
                   </div>
                 </motion.div>
               )}
@@ -158,23 +169,26 @@ export default function ExperienceCarousel() {
           ))}
         </Swiper>
 
-        {/* NAV BUTTONS */}
-        <button className="exp-prev absolute top-1/2 left-2 sm:-left-12 -translate-y-1/2 w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-green-900 text-white text-xl sm:text-2xl flex items-center justify-center shadow-xl hover:bg-green-800 transition z-20">
-          ←
+        {/* PREMIUM NAVIGATION BUTTONS */}
+        <button className="exp-prev absolute top-1/2 -left-8 -translate-y-1/2 w-16 h-16 rounded-full bg-white/70 backdrop-blur-md border border-white/40 shadow-xl flex items-center justify-center text-gray-800 hover:scale-110 hover:bg-green-700 hover:text-white transition-all duration-300 z-20">
+          ‹
         </button>
 
-        <button className="exp-next absolute top-1/2 right-2 sm:-right-12 -translate-y-1/2 w-12 sm:w-16 h-12 sm:h-16 rounded-full bg-green-900 text-white text-xl sm:text-2xl flex items-center justify-center shadow-xl hover:bg-green-800 transition z-20">
-          →
+        <button className="exp-next absolute top-1/2 -right-8 -translate-y-1/2 w-16 h-16 rounded-full bg-white/70 backdrop-blur-md border border-white/40 shadow-xl flex items-center justify-center text-gray-800 hover:scale-110 hover:bg-green-700 hover:text-white transition-all duration-300 z-20">
+          ›
         </button>
       </div>
 
-      {/* DOTS */}
-      <div className="absolute -bottom-8 sm:-bottom-10 left-1/2 -translate-x-1/2 flex gap-2">
+      {/* INDICATORS */}
+      <div className="flex justify-center mt-12 gap-3">
         {experiences.map((_, index) => (
-          <span
+          <button
             key={index}
+            onClick={() => swiperRef.current?.slideToLoop(index)}
             className={`h-2 rounded-full transition-all duration-500 ${
-              activeIndex === index ? "bg-green-900 w-7" : "bg-gray-300 w-2"
+              activeIndex === index
+                ? "bg-green-800 w-8"
+                : "bg-gray-300 w-2 hover:bg-green-400"
             }`}
           />
         ))}

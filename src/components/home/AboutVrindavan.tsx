@@ -18,7 +18,7 @@ const fadeLeft: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 1, ease: "easeOut" as const },
+    transition: { duration: 1, ease: "easeOut" },
   },
 };
 
@@ -27,7 +27,7 @@ const fadeRight: Variants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 1, ease: "easeOut" as const },
+    transition: { duration: 1, ease: "easeOut" },
   },
 };
 
@@ -36,31 +36,35 @@ const fadeUp: Variants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" as const },
+    transition: { duration: 0.7, ease: "easeOut" },
   },
 };
 
 export default function AboutVrindavan() {
   return (
-    <section className="relative py-10 sm:py-14 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
-        {/* SCROLL TRIGGER CONTAINER */}
+    <section className="relative py-16 sm:py-24 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden">
+
+      {/* Decorative Background Blur */}
+      <div className="absolute -top-20 -left-20 w-72 h-72 bg-green-200 rounded-full blur-3xl opacity-20" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-green-300 rounded-full blur-3xl opacity-20" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
         <motion.div
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
-          className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center"
+          className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center"
         >
           {/* LEFT IMAGE */}
           <motion.div
             variants={fadeLeft}
-            className="relative h-[300px] sm:h-[460px] md:h-[590px] rounded-3xl overflow-hidden shadow-xl"
+            className="relative h-[320px] sm:h-[500px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl group"
           >
             <motion.div
-              initial={{ scale: 1.06 }}
+              initial={{ scale: 1.1 }}
               whileInView={{ scale: 1 }}
-              transition={{ duration: 1.6, ease: "easeOut" as const }}
+              transition={{ duration: 1.6 }}
               viewport={{ once: true }}
               className="absolute inset-0"
             >
@@ -68,36 +72,39 @@ export default function AboutVrindavan() {
                 src="/images/exp1.webp"
                 alt="Vrindavan Farms Green Environment"
                 fill
-                className="object-cover"
+                className="object-cover group-hover:scale-105 transition duration-700"
               />
-              <div className="absolute inset-0 bg-black/15" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </motion.div>
           </motion.div>
 
           {/* RIGHT CONTENT */}
-          <motion.div variants={fadeRight} className="space-y-4 sm:space-y-6">
+          <motion.div variants={fadeRight} className="space-y-6">
+
             {/* LABEL */}
             <motion.p
               variants={fadeUp}
-              className="font-oswald tracking-[0.32em] text-[9px] sm:text-[11px] text-gray-500"
+              className="tracking-[0.35em] text-xs text-gray-500 font-semibold uppercase"
             >
-              ABOUT VRINDAVAN FARMS
+              About Vrindavan Farms
             </motion.p>
 
             {/* HEADING */}
             <motion.h2
               variants={fadeUp}
-              className="font-oswald text-xl sm:text-2xl md:text-5xl font-semibold tracking-tight text-gray-900 leading-snug"
+              className="text-2xl sm:text-3xl md:text-5xl font-bold text-gray-900 leading-tight"
             >
-              A peaceful escape where
-              <br />
-              nature, comfort & celebration meet
+              A peaceful escape where <br />
+              <span className="text-green-800">
+                nature, comfort & celebration
+              </span>{" "}
+              meet
             </motion.h2>
 
             {/* DESCRIPTION */}
             <motion.p
               variants={fadeUp}
-              className="text-gray-600 max-w-full sm:max-w-lg text-sm sm:text-base md:text-lg leading-relaxed"
+              className="text-gray-600 max-w-xl text-base md:text-lg leading-relaxed"
             >
               Vrindavan Farms is a thoughtfully designed farmhouse retreat
               surrounded by lush greenery and open lawns — ideal for peaceful
@@ -106,7 +113,10 @@ export default function AboutVrindavan() {
             </motion.p>
 
             {/* HIGHLIGHTS */}
-            <motion.div variants={sectionVariants} className="space-y-3 sm:space-y-4">
+            <motion.div
+              variants={sectionVariants}
+              className="space-y-5 pt-4"
+            >
               {[
                 {
                   title: "Peaceful Green Environment",
@@ -124,14 +134,17 @@ export default function AboutVrindavan() {
                 <motion.div
                   key={index}
                   variants={fadeUp}
-                  className="flex gap-3 sm:gap-4"
+                  whileHover={{ x: 6 }}
+                  className="flex gap-4 items-start group"
                 >
-                  <span className="mt-2 h-2 w-2 sm:h-2.5 sm:w-2.5 rounded-full bg-green-800 flex-shrink-0" />
+                  <div className="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shadow-sm">
+                    <div className="w-3 h-3 bg-green-800 rounded-full" />
+                  </div>
                   <div>
-                    <h4 className="font-oswald text-sm sm:text-base md:text-lg tracking-tight text-gray-900">
+                    <h4 className="text-lg font-semibold text-gray-900">
                       {item.title}
                     </h4>
-                    <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">
+                    <p className="text-gray-600 text-sm md:text-base leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
@@ -143,9 +156,9 @@ export default function AboutVrindavan() {
             <motion.a
               variants={fadeUp}
               href="/booking"
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.07 }}
               whileTap={{ scale: 0.95 }}
-              className="font-oswald tracking-[0.2em] font-bold inline-block mt-4 sm:mt-6 bg-green-800 hover:bg-green-700 text-white px-6 sm:px-10 py-2 sm:py-3 rounded-full text-xs sm:text-sm shadow-lg transition-all"
+              className="inline-block mt-6 bg-green-800 hover:bg-green-700 text-white px-10 py-3 rounded-full text-sm font-semibold shadow-xl transition-all tracking-wide"
             >
               PLAN YOUR VISIT
             </motion.a>

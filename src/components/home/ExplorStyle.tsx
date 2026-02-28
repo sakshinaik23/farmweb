@@ -3,127 +3,120 @@
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 
-/* ---------- Animation Variants ---------- */
+/* ---------- Animation ---------- */
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" as const },
+    transition: { duration: 0.8, ease: "easeOut" },
   },
 };
 
-/* ---------- Features Data ---------- */
+const fadeSide: Variants = {
+  hidden: { opacity: 0, x: -40 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+/* ---------- Data ---------- */
 const features = [
   {
     title: "Premium Rooms & Stay",
-    desc: "Comfortable, clean rooms with amenities.",
+    desc: "Comfortable, clean rooms with modern amenities for peaceful relaxation.",
     img: "/images/card-1.jpg",
     column: "right",
-    color: "text-orange-400",
+    accent: "text-orange-500",
   },
   {
     title: "Celebrations & Events",
-    desc: "Birthdays, pre-weddings, corporate events.",
+    desc: "Birthdays, pre-weddings, corporate gatherings & unforgettable memories.",
     img: "/images/card-4.jpg",
     column: "left",
-    color: "text-green-900",
+    accent: "text-green-800",
   },
   {
     title: "Fun Activities for All Ages",
-    desc: "Swimming, rain dance, indoor games.",
+    desc: "Swimming pool, rain dance, indoor & outdoor games for everyone.",
     img: "/images/card-3.jpg",
     column: "right",
-    color: "text-orange-400",
+    accent: "text-orange-500",
   },
   {
     title: "Authentic Homemade Food",
-    desc: "Fresh meals with local flavors.",
+    desc: "Freshly prepared local meals served with warmth & hygiene.",
     img: "/images/card-2.jpg",
     column: "left",
-    color: "text-green-900",
+    accent: "text-green-800",
   },
 ];
 
 export default function ExplorStyle() {
   return (
-    <section className="py-16 sm:py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
+    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden">
 
-        {/* Section Header */}
+      {/* Soft Decorative Blurs */}
+      <div className="absolute -top-20 left-0 w-80 h-80 bg-green-200 blur-3xl opacity-20 rounded-full" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-200 blur-3xl opacity-20 rounded-full" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
+
+        {/* Header */}
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           variants={fadeUp}
-          className="text-center mb-12 sm:mb-20"
+          className="text-center mb-16 sm:mb-24"
         >
-          <p className="font-oswald text-[9px] sm:text-xs tracking-[0.32em] text-gray-500 mb-2 sm:mb-3 font-medium">
-            WHAT'S YOUR TRAVEL STYLE?
+          <p className="uppercase tracking-[0.35em] text-xs text-gray-500 font-semibold mb-3">
+            What's Your Travel Style?
           </p>
-          <h2 className="font-oswald text-2xl sm:text-3xl md:text-5xl font-extrabold text-gray-900 leading-snug drop-shadow-lg">
-            Discover experiences at Vrindavan Farms
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+            Discover experiences at{" "}
+            <span className="text-gray-900">Vrindavan Farms</span>
           </h2>
         </motion.div>
 
-        {/* Zig-Zag Split */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 sm:gap-x-16 gap-y-8 sm:gap-y-10">
+        {/* Zig Zag Layout */}
+        <div className="grid md:grid-cols-2 gap-x-16 gap-y-16">
 
-          {/* Left Column */}
-          <div className="flex flex-col gap-12 sm:gap-20 transform md:translate-x-20 md:translate-y-10">
-            {features
-              .filter((f) => f.column === "left")
-              .map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.7, ease: "easeOut" as const }}
-                  className={`flex flex-col gap-2 ${idx === 0 ? "mt-2 sm:mt-5" : "mt-0"}`}
-                >
-                  <h3 className={`font-oswald text-lg sm:text-2xl md:text-3xl font-bold ${item.color}`}>
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 italic text-xs sm:text-sm md:text-base leading-relaxed font-medium">
-                    {item.desc}
-                  </p>
+          {features.map((item, index) => (
+            <motion.div
+              key={index}
+              variants={fadeSide}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className={`flex flex-col gap-5 ${
+                item.column === "left" ? "md:translate-y-16" : ""
+              }`}
+            >
+              {/* IMAGE */}
+              <div className="relative h-56 sm:h-72 md:h-96 rounded-3xl overflow-hidden shadow-2xl group">
+                <Image
+                  src={item.img}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
 
-                  <div className="relative h-44 sm:h-70 md:h-100 w-full sm:w-105 rounded-3xl overflow-hidden shadow-2xl">
-                    <Image src={item.img} alt={item.title} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-black/10" />
-                  </div>
-                </motion.div>
-              ))}
-          </div>
-
-          {/* Right Column */}
-          <div className="flex flex-col gap-12 sm:gap-20 md:-translate-y-10">
-            {features
-              .filter((f) => f.column === "right")
-              .map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.7, ease: "easeOut" as const }}
-                  className={`flex flex-col gap-2 ${idx === 1 ? "mt-2 sm:mt-5" : "mt-0"}`}
-                >
-                  <div className="relative h-44 sm:h-72 md:h-100 w-full sm:w-105 rounded-3xl overflow-hidden shadow-2xl">
-                    <Image src={item.img} alt={item.title} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-black/10" />
-                  </div>
-
-                  <h3 className={`font-oswald text-lg sm:text-2xl md:text-3xl font-bold ${item.color}`}>
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 italic text-xs sm:text-sm md:text-lg leading-relaxed font-medium">
-                    {item.desc}
-                  </p>
-                </motion.div>
-              ))}
-          </div>
+              {/* TEXT */}
+              <div className="space-y-2">
+                <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold ${item.accent}`}>
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-md">
+                  {item.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
 
         </div>
 
@@ -131,13 +124,13 @@ export default function ExplorStyle() {
         <motion.div
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ once: true }}
           variants={fadeUp}
-          className="text-center mt-8 sm:mt-16"
+          className="text-center mt-20"
         >
           <a
             href="/booking"
-            className="font-oswald tracking-[0.2em] font-semibold inline-block bg-green-800 hover:bg-green-700 text-white px-6 sm:px-10 py-2 sm:py-3 rounded-full text-xs sm:text-sm shadow-lg transition-all duration-300"
+            className="inline-block bg-green-800 hover:bg-green-700 text-white px-10 py-3 rounded-full text-sm font-semibold shadow-xl transition duration-300 tracking-wide"
           >
             BOOK YOUR EXPERIENCE NOW
           </a>

@@ -1,12 +1,25 @@
-"use client"; // only if you need client-side behavior
+import AboutHero from "@/components/about/AboutHero";
+import AboutStory from "@/components/about/AboutStory";
+import SignatureExperiences from "@/components/about/SignatureExperiences";
+import WhyChooseUs from "@/components/about/WhyChooseUs";
+import FarmStats from "@/components/about/FarmStats";
+import FarmTestimonials from "@/components/about/FarmTestimonials";
 
-import React from "react";
+import FarmCTA from "@/components/about/FarmCTA";
+import InstagramGallery from "@/components/about/InstagramGallery";
 
 export default function AboutPage() {
   return (
-    <div>
-      <h1>About Vrindavan Farms</h1>
-      <p>Vrindavan Farms is a peaceful farmhouse getaway...</p>
-    </div>
+    <>
+      <AboutHero />
+      <AboutStory />
+      <SignatureExperiences/>
+      <WhyChooseUs/>
+      <FarmStats/>
+      <FarmTestimonials/>
+   
+      <FarmCTA/>
+      <InstagramGallery/>
+    </>
   );
 }

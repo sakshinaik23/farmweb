@@ -1,20 +1,12 @@
-import HeroSlider from "@/components/home/HeroSlider";
-import ExperiencesSection from "@/components/home/ExperiencesSection";
-import AboutVrindavan from "@/components/home/AboutVrindavan";
-
-import ExplorStyle from "@/components/home/ExplorStyle";
-import GalleryCTA from "@/components/home/GalleryCTA";
+import HomePage from "./home/page";
 
 
-export default function Home() {
-  return (
-     <>
-      <HeroSlider />
-      <ExperiencesSection />
-      <AboutVrindavan/>
-      <ExplorStyle/>
-      <GalleryCTA/>
-    
+export default function Page() {
+  return(
+    <>
+    <HomePage />
     </>
-  );
+  )
 }
+
+

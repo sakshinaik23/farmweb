@@ -3,13 +3,15 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { name: "HOME", href: "/" },
   { name: "ABOUT", href: "/about" },
-  { name: "ROOMS", href: "/rooms" },
+  { name: "STAY", href: "/stay" },
   { name: "PACKAGES", href: "/packages" },
   { name: "EVENTS", href: "/events" },
+  { name: "EXPERIENCES", href: "/experiences" },
 ];
 
 export default function Navbar() {
@@ -47,44 +49,45 @@ export default function Navbar() {
         fixed top-0 w-full z-50
         transition-all duration-500 ease-in-out
         ${showNavbar ? "translate-y-0" : "-translate-y-full"}
-        ${hasBg ? "bg-white/90 backdrop-blur-md shadow-md" : "bg-transparent"}
+        ${
+          hasBg
+            ? "bg-white/80 backdrop-blur-xl shadow-lg border-b border-white/20"
+            : "bg-transparent"
+        }
       `}
     >
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-6 py-4 flex items-center">
+      <div className="relative max-w-7xl mx-auto px-6 py-4 flex items-center">
 
         {/* LOGO */}
         <Link
           href="/"
           className={`
-            flex items-center gap-1 px-3 sm:px-4 py-2 rounded-full transition-all
-            ${hasBg ? "bg-white/90 shadow-sm" : "bg-white/10"}
+            flex items-center gap-1 px-4 py-2 rounded-full transition-all duration-300
+            ${hasBg ? "bg-white shadow-sm" : "bg-white/10 backdrop-blur-md"}
           `}
         >
           <span
-            className={`
-              text-2xl sm:text-2xl font-[var(--font-playfair)] font-semibold
-              ${hasBg ? "text-green-900" : "text-white"}
-            `}
+            className={`text-2xl font-[var(--font-playfair)] font-semibold ${
+              hasBg ? "text-green-900" : "text-white"
+            }`}
           >
             Vrindavan
           </span>
           <span
-            className={`
-              text-lg sm:text-lg font-[var(--font-poppins)] font-medium
-              ${hasBg ? "text-green-900" : "text-white"}
-            `}
+            className={`text-lg font-[var(--font-poppins)] ${
+              hasBg ? "text-green-900" : "text-white"
+            }`}
           >
             Farms
           </span>
         </Link>
 
-        {/* NAV LINKS - Desktop */}
+        {/* DESKTOP NAV */}
         <div
           className={`
-            hidden md:flex items-center gap-6 lg:gap-10
+            hidden md:flex items-center gap-10
             absolute left-1/2 -translate-x-1/2
-            text-[14px] sm:text-[15px] md:text-[16px]
-            tracking-widest
+            tracking-widest text-[15px]
             ${hasBg ? "text-gray-800" : "text-white"}
           `}
         >
@@ -93,12 +96,18 @@ export default function Navbar() {
 
             return (
               <Link key={link.name} href={link.href} className="relative group">
-                <span className={isActive ? "font-semibold" : "opacity-90"}>
+                <span
+                  className={`transition ${
+                    isActive ? "font-semibold" : "opacity-90"
+                  }`}
+                >
                   {link.name}
                 </span>
+
+                {/* Animated underline */}
                 <span
                   className={`
-                    absolute left-0 -bottom-1 h-[1px] bg-current
+                    absolute left-0 -bottom-2 h-[2px] bg-white
                     transition-all duration-300
                     ${isActive ? "w-full" : "w-0 group-hover:w-full"}
                   `}
@@ -108,17 +117,16 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* BOOK NOW - Desktop */}
+        {/* CTA BUTTON */}
         <div className="ml-auto hidden md:block">
           <Link
             href="/booking"
             className="
-              bg-green-800 text-white
-              px-6 sm:px-9 py-2.5 sm:py-3.5
-              rounded-full
-              uppercase tracking-widest text-xs sm:text-sm font-semibold
-              shadow-lg
-              hover:bg-green-700 hover:shadow-xl
+              relative px-8 py-3 rounded-full
+              uppercase tracking-widest text-sm font-semibold
+              text-white bg-gradient-to-r from-green-700 to-green-900
+              shadow-lg overflow-hidden
+              hover:shadow-green-800/40 hover:scale-105
               transition-all duration-300
             "
           >
@@ -126,43 +134,66 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* MOBILE HAMBURGER */}
+        {/* MOBILE BUTTON */}
         <div className="ml-auto md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-md bg-white/20 hover:bg-white/30 transition"
+            className="relative w-8 h-8 flex flex-col justify-center items-center"
           >
-            <span className="block w-6 h-0.5 bg-white mb-1"></span>
-            <span className="block w-6 h-0.5 bg-white mb-1"></span>
-            <span className="block w-6 h-0.5 bg-white"></span>
+            <span
+              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+                mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-white my-1 transition-all duration-300 ${
+                mobileMenuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
+                mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+              }`}
+            />
           </button>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white/90 backdrop-blur-md shadow-md px-4 pt-4 pb-6 flex flex-col gap-4 text-gray-800">
-          {navLinks.map((link) => (
+      {/* MOBILE MENU WITH ANIMATION */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white/95 backdrop-blur-xl shadow-xl px-6 pt-6 pb-8 flex flex-col gap-5 text-gray-800"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={`uppercase tracking-widest text-sm ${
+                  pathname === link.href
+                    ? "font-bold text-green-800"
+                    : "opacity-80"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+
             <Link
-              key={link.name}
-              href={link.href}
-              className={`font-medium uppercase tracking-widest text-sm ${
-                pathname === link.href ? "font-bold" : "opacity-90"
-              }`}
+              href="/booking"
+              className="mt-4 bg-green-800 text-white px-6 py-3 rounded-full text-sm font-semibold text-center hover:bg-green-700 transition"
               onClick={() => setMobileMenuOpen(false)}
             >
-              {link.name}
+              Contact Us
             </Link>
-          ))}
-          <Link
-            href="/booking"
-            className="bg-green-800 text-white px-6 py-2 rounded-full text-sm font-semibold mt-2 shadow hover:bg-green-700 transition"
-            onClick={() => setMobileMenuOpen(false)}
-          >
-            Contact Us
-          </Link>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

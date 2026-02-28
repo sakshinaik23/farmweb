@@ -25,7 +25,7 @@ const gallery = [
 
 export default function GalleryCTA() {
   return (
-    <section className="py-16 sm:py-28 bg-white">
+    <section className="py-16 sm:py-28  bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-6">
 
         {/* Section Header */}

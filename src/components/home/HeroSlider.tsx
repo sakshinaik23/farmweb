@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -34,7 +34,16 @@ const slides: Slide[] = [
 ];
 
 export default function HeroSlider() {
+  const [mounted, setMounted] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef<any>(null);
+
+  // Only render after mount to prevent SSR mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
@@ -42,59 +51,62 @@ export default function HeroSlider() {
         modules={[Autoplay, EffectFade]}
         effect="fade"
         loop
-        speed={1500}
-        autoplay={{ delay: 6500, disableOnInteraction: false }}
+        speed={1800}
+        autoplay={{ delay: 6000, disableOnInteraction: false }}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
         className="h-full"
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
             <div className="relative h-screen w-full">
-              {/* IMAGE WITH SLIGHTLY DARKER TONE */}
+              {/* Cinematic Zoom Image */}
               <motion.div
                 className="absolute inset-0"
                 initial={{ scale: 1 }}
-                animate={activeIndex === index ? { scale: 1.12 } : { scale: 1 }}
-                transition={{ duration: 7, ease: "easeOut" }}
+                animate={activeIndex === index ? { scale: 1.1 } : { scale: 1 }}
+                transition={{ duration: 8, ease: "easeOut" }}
               >
                 <Image
                   src={slide.image}
                   alt={slide.title}
                   fill
                   priority={index === 0}
-                  className="object-cover brightness-95 contrast-105"
+                  className="object-cover brightness-[0.85] contrast-110"
                 />
               </motion.div>
 
-              {/* DARKER GRADIENT OVERLAY */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/0" />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent" />
 
-              {/* TEXT */}
-              <div className="relative z-10 h-full flex items-center px-4 sm:px-8 md:px-24">
+              {/* Content */}
+              <div className="relative z-10 h-full flex items-center px-6 sm:px-16 lg:px-28">
                 <motion.div
                   key={activeIndex}
-                  initial="hidden"
-                  animate="visible"
-                  variants={{
-                    hidden: {},
-                    visible: {
-                      transition: { delayChildren: 0.9, staggerChildren: 0.25 },
-                    },
-                  }}
-                  className="text-white max-w-4xl"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                  className="max-w-4xl text-white"
                 >
+                  <motion.p
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.4 }}
+                    className="uppercase tracking-[0.3em] text-xs sm:text-sm text-green-300 mb-4"
+                  >
+                    Welcome to
+                  </motion.p>
+
                   <motion.h1
-                    variants={{
-                      hidden: { opacity: 0, y: 50 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 1 }}
+                    initial={{ y: 60, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 1 }}
                     className="
-                      font-bebas
-                      uppercase
-                      text-[2.5rem] sm:text-[3.8rem] md:text-[5.2rem] lg:text-[6.4rem]
-                      leading-[1.1] sm:leading-[0.88]
-                      tracking-tight
+                      font-bebas uppercase
+                      text-[2.8rem] sm:text-[4.5rem] md:text-[6rem]
+                      leading-[0.95]
+                      bg-gradient-to-r from-white via-green-200 to-white
+                      bg-clip-text text-transparent
                       drop-shadow-2xl
                     "
                   >
@@ -102,39 +114,44 @@ export default function HeroSlider() {
                   </motion.h1>
 
                   <motion.p
-                    variants={{
-                      hidden: { opacity: 0, y: 24 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.9 }}
-                    className="
-                      mt-2 sm:mt-4
-                      text-sm sm:text-lg md:text-xl lg:text-2xl
-                      tracking-wide
-                      text-white/90
-                    "
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1 }}
+                    className="mt-4 text-base sm:text-lg md:text-xl text-white/85"
                   >
                     {slide.subtitle}
                   </motion.p>
 
+                  {/* Buttons */}
                   <motion.div
-                    variants={{
-                      hidden: { opacity: 0, y: 20 },
-                      visible: { opacity: 1, y: 0 },
-                    }}
-                    transition={{ duration: 0.8 }}
-                    className="mt-4 sm:mt-10 flex flex-col sm:flex-row gap-4 sm:gap-6"
+                    initial={{ y: 30, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 1.2 }}
+                    className="mt-8 flex flex-col sm:flex-row gap-6"
                   >
                     <a
                       href="#experiences"
-                      className="bg-green-900 hover:bg-green-800 text-white px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold rounded-full shadow-lg transition-all text-center"
+                      className="
+                        px-10 py-4 rounded-full
+                        bg-gradient-to-r from-green-700 to-green-900
+                        text-white font-semibold tracking-wide
+                        shadow-xl hover:scale-105 hover:shadow-green-900/40
+                        transition-all duration-300
+                      "
                     >
                       Explore Experiences
                     </a>
 
                     <a
                       href="#packages"
-                      className="border border-white text-white hover:bg-white hover:text-black px-6 sm:px-10 py-3 sm:py-4 text-sm sm:text-base md:text-lg font-semibold rounded-full shadow-lg transition-all text-center"
+                      className="
+                        px-10 py-4 rounded-full
+                        border border-white/60
+                        backdrop-blur-md
+                        text-white font-semibold tracking-wide
+                        hover:bg-white hover:text-black
+                        transition-all duration-300
+                      "
                     >
                       View Packages
                     </a>
@@ -145,6 +162,21 @@ export default function HeroSlider() {
           </SwiperSlide>
         ))}
       </Swiper>
+
+      {/* Pagination Dots */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => swiperRef.current?.slideToLoop(index)}
+            className={`h-2 rounded-full transition-all duration-500 ${
+              activeIndex === index
+                ? "w-10 bg-white shadow-md"
+                : "w-3 bg-white/40 hover:bg-white/70"
+            }`}
+          />
+        ))}
+      </div>
     </section>
   );
 }
