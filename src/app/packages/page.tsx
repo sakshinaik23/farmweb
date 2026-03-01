@@ -1,9 +1,17 @@
-// src/app/packages/page.tsx
+import PackagesHero from "@/components/packages/PackagesHero";
+import PackageGrid from "@/components/packages/PackageGrid";
+import AmenitiesSection from "@/components/packages/AmenitiesSection";
+import PoliciesSection from "@/components/packages/PoliciesSection";
+import PackagesCTA from "@/components/packages/PackagesCTA";
+
 export default function PackagesPage() {
   return (
-    <div className="p-8 text-center">
-      <h1 className="text-3xl font-bold">Packages</h1>
-      <p>Check our Vrindavan Farms packages here.</p>
-    </div>
+    <main>
+      <PackagesHero />
+      <PackageGrid />
+      <AmenitiesSection />
+      <PoliciesSection />
+      <PackagesCTA />
+    </main>
   );
 }
