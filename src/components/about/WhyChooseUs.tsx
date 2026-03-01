@@ -45,7 +45,7 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative py-28 bg-[#f8f6f2] overflow-hidden">
+    <section className="relative py-15 bg-[#f8f6f2] overflow-hidden">
 
       {/* Soft background glow */}
       <div className="absolute -top-40 left-0 w-96 h-96 bg-green-100 blur-3xl opacity-30 rounded-full"></div>

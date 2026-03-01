@@ -16,7 +16,7 @@ const images = [
 
 export default function SignatureExperiences() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] py-24 sm:py-32 -mt-16">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] py-24 sm:py-12 -mt-16">
 
       {/* Soft Background Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-green-100 rounded-full blur-[120px] opacity-40"></div>

@@ -69,7 +69,7 @@ export default function ExperienceCarousel() {
   return (
     <section
       id="experiences"
-      className="relative py-28 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden"
+      className="relative py-20 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden"
     >
       {/* Soft Luxury Background Glow */}
       <div className="absolute -top-32 left-0 w-96 h-96 bg-green-200 blur-3xl opacity-20 rounded-full"></div>

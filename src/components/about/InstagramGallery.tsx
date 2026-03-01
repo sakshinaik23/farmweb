@@ -15,7 +15,7 @@ const igImages = [
 
 export default function InstagramSection() {
   return (
-    <section className="py-28 bg-[#f8f6f2]">
+    <section className="py-15 bg-[#f8f6f2]">
       <div className="max-w-7xl mx-auto px-6 text-center">
         {/* Section Header */}
         <motion.p

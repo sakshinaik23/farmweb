@@ -42,7 +42,7 @@ const fadeUp: Variants = {
 
 export default function AboutVrindavan() {
   return (
-    <section className="relative py-16 sm:py-24 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden">
+    <section className="relative py-16 sm:py-12 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden">
 
       {/* Decorative Background Blur */}
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-green-200 rounded-full blur-3xl opacity-20" />

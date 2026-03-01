@@ -28,7 +28,7 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-28 bg-[#fdfcf9] overflow-hidden">
+    <section className="py-20 bg-[#fdfcf9] overflow-hidden">
       {/* Heading */}
       <div className="text-center mb-16">
         <p className="uppercase tracking-[0.3em] text-xs text-gray-400">

@@ -1,11 +1,21 @@
-// src/app/rooms/page.tsx
-import React from "react";
+import AboutHero from "@/components/stay/AboutHero";
+import StayIntro from "@/components/stay/StayIntro";
+import StayRooms from "@/components/stay/StayRooms";
+import StayIncludes from "@/components/stay/StayIncludes";
+import StayGuidelines from "@/components/stay/StayGuidelines";
+import StayPackagesSnapshot from "@/components/stay/StayPackagesSnapshot";
+import StayBookingCTA from "@/components/stay/StayBookingCTA";
 
-export default function RoomsPage() {
+export default function HomePage() {
   return (
-    <div>
-      <h1>Our Rooms</h1>
-      <p>We have 5 premium rooms designed for family and group stays.</p>
-    </div>
+    <>
+    <AboutHero/>
+    <StayIntro/>
+    <StayRooms/>
+    <StayIncludes/>
+    <StayGuidelines/>
+    <StayPackagesSnapshot/>
+    <StayBookingCTA/>
+    </>
   );
 }

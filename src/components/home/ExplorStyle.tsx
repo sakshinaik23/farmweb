@@ -56,7 +56,7 @@ const features = [
 
 export default function ExplorStyle() {
   return (
-    <section className="relative py-20 sm:py-28 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden">
+    <section className="relative py-20 sm:py-12 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden">
 
       {/* Soft Decorative Blurs */}
       <div className="absolute -top-20 left-0 w-80 h-80 bg-green-200 blur-3xl opacity-20 rounded-full" />
