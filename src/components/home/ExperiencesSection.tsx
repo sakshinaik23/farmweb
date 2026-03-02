@@ -30,7 +30,7 @@ const experiences: Experience[] = [
     desc: "One-day escape packed with food, games, pool fun & relaxation.",
     tags: ["Includes Lunch", "Pool Fun", "Games"],
     price: "₹1200 / person",
-    image: "/images/exp2.webp",
+    image: "/images/exp6.webp",
   },
   {
     title: "Event Celebrations",
@@ -44,21 +44,21 @@ const experiences: Experience[] = [
     desc: "High-energy DJ rain dance & refreshing pool activities.",
     tags: ["DJ", "Water Fun", "Kids Friendly"],
     price: "Included in Picnic",
-    image: "/images/exp4.webp",
+    image: "/images/exp2.webp",
   },
   {
     title: "Homely Food",
     desc: "Freshly prepared authentic meals with local flavors.",
     tags: ["Pure Veg", "Local Taste", "Fresh"],
     price: "Included",
-    image: "/images/exp5.webp",
+    image: "/images/include1.webp",
   },
   {
     title: "Comfort & Relaxation",
     desc: "Spacious rooms designed for comfort & peace of mind.",
     tags: ["AC Rooms", "Clean", "Peaceful"],
     price: "From ₹2500 / night",
-    image: "/images/exp6.webp",
+    image: "/images/exp4.webp",
   },
 ];
 

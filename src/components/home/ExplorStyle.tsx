@@ -96,15 +96,15 @@ export default function ExplorStyle() {
               }`}
             >
               {/* IMAGE */}
-              <div className="relative h-56 sm:h-72 md:h-96 rounded-3xl overflow-hidden shadow-2xl group">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
+              <div className="relative h-56 sm:h-72 md:w-125 md:h-96 rounded-2xl overflow-hidden shadow-2xl">
+  <Image
+    src={item.img}
+    alt={item.title}
+    fill
+    className="object-cover"
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+</div>
 
               {/* TEXT */}
               <div className="space-y-2">

@@ -1,185 +1,252 @@
-"use client"; // Must be first line
+"use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
-interface FormData {
-  name: string;
-  email: string;
-  phone: string;
-  subject: string;
-  message: string;
-}
-
-export default function ContactSection() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const [form, setForm] = useState<FormData>({
+export default function EventEnquiryForm() {
+  const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
-    subject: "",
+    email: "",
+    eventType: "",
+    eventDate: "",
+    guests: "",
     message: "",
   });
 
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");
-
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    setError("");
-    setSuccess("");
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!form.name || !form.email || !form.message) {
-      setError("Please fill in all required fields.");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(form.email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    // TODO: Replace with real API integration
-    console.log("Form submitted:", form);
-
-    setForm({ name: "", email: "", phone: "", subject: "", message: "" });
-    setSuccess("Thank you! Your message has been sent.");
+    console.log(formData);
+    alert("Your enquiry has been submitted. We will contact you shortly.");
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      eventType: "",
+      eventDate: "",
+      guests: "",
+      message: "",
+    });
   };
-
-  if (!mounted) return null;
 
   return (
-    <section className="bg-[#f8f6f2] py-20">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12">
+    <section className="relative py-14 sm:py-20 bg-[#f8f6f2] overflow-hidden">
 
-        {/* LEFT SIDE: Contact Info */}
+      {/* Subtle background glow */}
+      <div className="absolute -top-40 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-green-100 blur-3xl opacity-30 rounded-full"></div>
+
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="space-y-6"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10 sm:mb-14"
         >
-          <h2 className="text-3xl font-bold">Let's Plan Your Vrindavan Farm Adventure</h2>
-          <h3 className="text-xl font-semibold text-green-700">Vrindavan Farms</h3>
+          <p className="uppercase tracking-[0.3em] text-[10px] sm:text-xs text-gray-500">
+            Enquiry
+          </p>
 
-          <div className="space-y-4 text-gray-700">
-            <p>
-              <strong>Address:</strong> Near Chon, Aghanwadi Next Janai farms, Badlapur, Maharashtra 421503
-            </p>
-            <p>
-              <strong>Google Maps:</strong>{" "}
-              <a
-                href="https://www.google.com/maps/place/Vrindavan+Farms/@19.2048963,73.2959885,15z/data=!4m21!1m11!3m10!1s0x3be78d2c6154d0db:0xc658ad7c351d7ccb!2sVrindavan+Farms!5m2!4m1!1i2!8m2!3d19.2050191!4d73.2961309!10e5!16s%2Fg%2F11pq_mcwn8!3m8!1s0x3be78d2c6154d0db:0xc658ad7c351d7ccb!5m2!4m1!1i2!8m2!3d19.2050191!4d73.2961309!16s%2Fg%2F11pq_mcwn8?entry=ttu&g_ep=EgoyMDI2MDIyNS4wIKXMDSoASAFQAw%3D%3D"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                View on Map
-              </a>
-            </p>
-            <p>📞 +91 87670 48880</p>
-            <p>Your call, our service—anytime!</p>
-            <p>✉️ hello@vrindavanfarms.com</p>
-            <p className="text-gray-500 italic">From message to memories — we’re just a reply away!</p>
-          </div>
+          <h2 className="mt-3 sm:mt-4 text-3xl sm:text-5xl font-bold text-gray-900">
+            Plan Your Event With Us
+          </h2>
+
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto">
+            Share your event details and our team will contact you with
+            availability and pricing.
+          </p>
         </motion.div>
 
-        {/* RIGHT SIDE: Form */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white rounded-2xl shadow-xl p-8"
+        {/* Form */}
+        <motion.form
+          onSubmit={handleSubmit}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="relative bg-white/90 backdrop-blur-md 
+                     p-6 sm:p-10 md:p-12 
+                     rounded-2xl sm:rounded-3xl 
+                     shadow-xl sm:shadow-2xl 
+                     border border-white/40 
+                     transition-all duration-500"
         >
-          {error && <p className="text-red-600 mb-4">{error}</p>}
-          {success && <p className="text-green-600 mb-4">{success}</p>}
+          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-green-100 via-transparent to-orange-100 opacity-20 pointer-events-none"></div>
 
-          <motion.form
-            onSubmit={handleSubmit}
-            className="space-y-4"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-          >
-            {[
-              { name: "name", type: "text", placeholder: "Name *", required: true },
-              { name: "email", type: "email", placeholder: "Email *", required: true },
-              { name: "phone", type: "text", placeholder: "Phone" },
-              { name: "subject", type: "text", placeholder: "Subject" },
-            ].map((field) => (
-              <motion.input
-                key={field.name}
-                type={field.type}
-                name={field.name}
-                value={form[field.name as keyof FormData]}
+          <div className="relative grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
+
+            {/* Full Name */}
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-800">
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                required
+                value={formData.name}
                 onChange={handleChange}
-                placeholder={field.placeholder}
-                required={field.required}
-                className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-                }}
+                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
+                           rounded-lg sm:rounded-xl 
+                           border border-gray-300 bg-white 
+                           focus:outline-none focus:ring-2 
+                           focus:ring-green-700 focus:border-green-700 
+                           transition-all duration-300"
               />
-            ))}
+            </div>
 
-            <motion.textarea
+            {/* Contact Number */}
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-800">
+                Contact Number
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                required
+                value={formData.phone}
+                onChange={handleChange}
+                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
+                           rounded-lg sm:rounded-xl 
+                           border border-gray-300 bg-white 
+                           focus:outline-none focus:ring-2 
+                           focus:ring-green-700 focus:border-green-700 
+                           transition-all duration-300"
+              />
+            </div>
+
+            {/* Email */}
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-800">
+                Email Address
+              </label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
+                           rounded-lg sm:rounded-xl 
+                           border border-gray-300 bg-white 
+                           focus:outline-none focus:ring-2 
+                           focus:ring-green-700 focus:border-green-700 
+                           transition-all duration-300"
+              />
+            </div>
+
+            {/* Event Type */}
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-800">
+                Event Type
+              </label>
+              <select
+                name="eventType"
+                required
+                value={formData.eventType}
+                onChange={handleChange}
+                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
+                           rounded-lg sm:rounded-xl 
+                           border border-gray-300 bg-white 
+                           focus:outline-none focus:ring-2 
+                           focus:ring-green-700 focus:border-green-700 
+                           transition-all duration-300"
+              >
+                <option value="">Select Event</option>
+                <option>Birthday Celebration</option>
+                <option>Corporate Outing</option>
+                <option>Pre-Wedding Event</option>
+                <option>Family Get-Together</option>
+              </select>
+            </div>
+
+            {/* Event Date */}
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-800">
+                Preferred Event Date
+              </label>
+              <input
+                type="date"
+                name="eventDate"
+                required
+                value={formData.eventDate}
+                onChange={handleChange}
+                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
+                           rounded-lg sm:rounded-xl 
+                           border border-gray-300 bg-white 
+                           focus:outline-none focus:ring-2 
+                           focus:ring-green-700 focus:border-green-700 
+                           transition-all duration-300"
+              />
+            </div>
+
+            {/* Guests */}
+            <div className="flex flex-col">
+              <label className="text-sm font-medium text-gray-800">
+                Expected Guests
+              </label>
+              <input
+                type="number"
+                name="guests"
+                required
+                value={formData.guests}
+                onChange={handleChange}
+                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
+                           rounded-lg sm:rounded-xl 
+                           border border-gray-300 bg-white 
+                           focus:outline-none focus:ring-2 
+                           focus:ring-green-700 focus:border-green-700 
+                           transition-all duration-300"
+              />
+            </div>
+
+          </div>
+
+          {/* Message */}
+          <div className="mt-6 sm:mt-8 flex flex-col">
+            <label className="text-sm font-medium text-gray-800">
+              Additional Details
+            </label>
+            <textarea
               name="message"
-              value={form.message}
+              rows={4}
+              value={formData.message}
               onChange={handleChange}
-              placeholder="Message *"
-              required
-              className="w-full p-3 border rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-green-500"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } },
-              }}
+              className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
+                         rounded-lg sm:rounded-xl 
+                         border border-gray-300 bg-white 
+                         focus:outline-none focus:ring-2 
+                         focus:ring-green-700 focus:border-green-700 
+                         transition-all duration-300"
+              placeholder="Tell us more about your event..."
             />
+          </div>
 
-            <motion.button
+          {/* Submit Button */}
+          <div className="mt-8 sm:mt-10 text-center">
+            <button
               type="submit"
-              className="w-full py-3 rounded-lg bg-green-900 text-white font-bold hover:scale-105 transition-transform"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.2 } },
-              }}
+              className="px-8 sm:px-12 py-3 sm:py-4 
+                         bg-green-700 text-white 
+                         rounded-full font-semibold 
+                         text-sm sm:text-base
+                         hover:bg-green-800 hover:scale-[1.03] 
+                         active:scale-95 transition-all duration-300 
+                         shadow-lg"
             >
-              Send Message
-            </motion.button>
-          </motion.form>
+              Submit
+            </button>
+          </div>
 
-          <motion.div
-            className="mt-6 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <p className="mb-2">Or reach us directly on WhatsApp:</p>
-            <a
-              href="https://wa.me/918767048880"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition"
-            >
-              WhatsApp Us
-            </a>
-          </motion.div>
-        </motion.div>
+        </motion.form>
+
       </div>
     </section>
   );

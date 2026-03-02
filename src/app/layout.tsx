@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import Footer from "@/components/common/Footer";
+import Preloader from "@/components/Preloader";
 
 import { Playfair_Display, Montserrat, Plus_Jakarta_Sans } from "next/font/google";
 
@@ -41,13 +42,15 @@ export default function RootLayout({
           font-[var(--font-montserrat)]
         `}
       >
-        <Navbar />
+        <Preloader>
+          <Navbar />
 
-        <main className="flex-grow">
-          {children}
-        </main>
+          <main className="flex-grow">
+            {children}
+          </main>
 
-        <Footer />
+          <Footer />
+        </Preloader>
       </body>
     </html>
   );

@@ -19,7 +19,7 @@ export default function SignatureExperiences() {
     <section className="relative overflow-hidden bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] py-24 sm:py-12 -mt-16">
 
       {/* Soft Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-green-100 rounded-full blur-[120px] opacity-40"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-green-100 rounded-full blur-[120px] opacity-40"></div>
 
       <div className="relative max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch min-h-[620px]">
 
@@ -33,7 +33,7 @@ export default function SignatureExperiences() {
           }}
           speed={900}
           loop
-          className="w-full h-full rounded-2xl overflow-hidden shadow-2xl"
+          className="w-full h-full rounded-1xl overflow-hidden shadow-2xl"
         >
           {images.map((img, index) => (
             <SwiperSlide key={index} className="relative w-full h-full group">

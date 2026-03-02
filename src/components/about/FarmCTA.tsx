@@ -1,82 +1,55 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function FarmCTA() {
+export default function StayBookingCTA() {
   return (
-    <section className="relative w-full h-[85vh] min-h-[650px] overflow-hidden">
-
+    <section className="relative py-40 px-6 overflow-hidden ">
+      
       {/* Background Image */}
-      <Image
-        src="/images/cta-bg.webp"
-        alt="Vrindavan Farms"
-        fill
-        priority
-        className="object-cover brightness-110"
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage:
+            "url('/images/about-cta.webp')",
+        }}
       />
 
-      {/* Softer Overlay (lighter than before) */}
-      <div className="absolute inset-0 bg-black/40" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 h-full flex flex-col lg:flex-row items-center justify-center lg:justify-between text-white">
+      <div className="relative max-w-4xl mx-auto text-center text-white">
 
-        {/* Left Text Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 60 }}
+        {/* Main Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
           viewport={{ once: true }}
-          className="max-w-2xl text-center lg:text-left"
+          className="mt-6 text-5xl sm:text-6xl font-bold leading-tight text-white"
         >
-          {/* Small Text */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true }}
-            className="uppercase tracking-[0.5em] text-xs text-white font-[var(--font-montserrat)]"
-          >
-            Plan Your Escape
-          </motion.p>
+          Experience Nature & Comfort
+          <span className="block text-white">
+            Create Beautiful Moments
+          </span>
+        </motion.h2>
 
-          {/* Main Heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-6 text-5xl sm:text-6xl font-bold leading-tight text-white"
-          >
-            Experience Nature, Comfort
-            <span className="block text-white">
-              & Unforgettable Moments
-            </span>
-          </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-lg text-gray-200 mb-10 max-w-2xl mx-auto"
+        >
+          The perfect setting for peaceful stays and special occasions.
+        </motion.p>
 
-          {/* Paragraph */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="mt-8 text-white/90 text-lg leading-relaxed"
-          >
-            Whether it's a peaceful family getaway, a birthday celebration,
-            or a corporate retreat — Vrindavan Farms offers the perfect
-            setting to create beautiful memories.
-          </motion.p>
-        </motion.div>
-
-        {/* Right Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-12 lg:mt-0 flex flex-col sm:flex-row gap-6"
         >
           <Link
             href="/contact"
@@ -92,7 +65,6 @@ export default function FarmCTA() {
             Explore Experiences
           </Link>
         </motion.div>
-
       </div>
     </section>
   );

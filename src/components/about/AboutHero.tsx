@@ -16,7 +16,7 @@ export default function AboutHero() {
         className="absolute inset-0"
       >
         <Image
-          src="/images/about-hero.jpg"
+          src="/images/about-hero.webp"
           alt="About Vrindavan Farms"
           fill
           priority

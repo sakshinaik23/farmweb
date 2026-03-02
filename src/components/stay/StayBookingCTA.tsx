@@ -12,7 +12,7 @@ export default function StayBookingCTA() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('/images/stay-cta.webp')", // replace with your premium image
+            "url('/images/stay-cta1.webp')", // replace with your premium image
         }}
       />
 
