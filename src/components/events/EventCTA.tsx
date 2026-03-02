@@ -4,74 +4,86 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function EventCTA() {
+export default function EventsCTA() {
   return (
-    <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <section className="relative py-32 px-6 overflow-hidden">
 
       {/* Background Image */}
       <Image
         src="/images/experience/hero.png"
-        alt="Book Event"
+        alt="Plan Your Event at Vrindavan Farms"
         fill
         priority
-        sizes="100vw"
-        className="object-cover object-center scale-105"
+        className="object-cover object-center"
       />
 
-      {/* Gradient Overlay (better than solid black) */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70" />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
-      {/* Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="relative z-10 text-center px-6 max-w-3xl"
-      >
+      <div className="relative max-w-4xl mx-auto text-center text-white">
+
         {/* Small Label */}
-        <p className="uppercase tracking-[0.4em] text-xs text-white/70">
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="uppercase tracking-[0.4em] text-xs text-white/70 mb-6"
+        >
           Let’s Celebrate Together
-        </p>
+        </motion.p>
 
         {/* Heading */}
-        <h2 className="mt-6 text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="text-3xl md:text-5xl font-[var(--font-playfair)] font-bold mb-6 leading-tight"
+        >
           Plan Your Event With Us
-        </h2>
+        </motion.h2>
 
-        {/* Subtext */}
-        <p className="mt-6 text-white/80 text-sm sm:text-base max-w-xl mx-auto">
+        {/* Paragraph */}
+        <motion.p
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-lg text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed"
+        >
           Connect with our team to customize your celebration and create
           unforgettable memories at Vrindavan Farms.
-        </p>
+        </motion.p>
 
         {/* Buttons */}
-        <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-5">
-
-          {/* WhatsApp */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row justify-center gap-4"
+        >
+          {/* Primary Button */}
           <Link
             href="https://wa.me/918767048880"
             target="_blank"
-            className="px-10 py-4 bg-green-700 text-white rounded-full font-semibold 
-                       hover:bg-green-800 hover:scale-105 active:scale-95 
-                       transition-all duration-300 shadow-xl"
+            className="inline-block px-10 py-4 bg-green-800 text-white rounded-full text-sm font-semibold tracking-wide hover:bg-green-600 transition duration-300 shadow-lg"
           >
             Enquire on WhatsApp
           </Link>
 
-          {/* Instagram */}
+          {/* Secondary Button */}
           <Link
             href="https://www.instagram.com/vrindavan__farms/"
             target="_blank"
-            className="px-10 py-4 border border-white text-white rounded-full font-semibold 
-                       hover:bg-white hover:text-black hover:scale-105 active:scale-95 
-                       transition-all duration-300"
+            className="inline-block px-10 py-4 border border-white text-white rounded-full text-sm font-semibold tracking-wide hover:bg-white hover:text-green-800 transition duration-300"
           >
             View Instagram
           </Link>
+        </motion.div>
 
-        </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
