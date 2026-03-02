@@ -45,7 +45,7 @@ export default function InstagramSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          Follow us and see beautiful farm moments @vrindavan_farms
+          Follow us and see beautiful farm moments @vrindavan__farms
         </motion.p>
 
         {/* Glass Frame Container */}
@@ -90,7 +90,7 @@ export default function InstagramSection() {
 
         {/* Follow Button */}
         <motion.a
-          href="https://www.instagram.com/vrindavan_farms"
+          href="https://www.instagram.com/vrindavan__farms"
           target="_blank"
           className="inline-flex items-center gap-2 mt-10 px-8 py-3 bg-gradient-to-r from-green-700 via-yellow-500 to-orange-400 text-white font-bold rounded-full shadow-xl hover:scale-105 transition-transform duration-300 animate-gradient-x"
           initial={{ opacity: 0, y: 20 }}

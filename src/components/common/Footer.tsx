@@ -122,7 +122,7 @@ export default function Footer() {
           <p className="text-gray-400">
             📍 Near Chon, Aghanwadi Next Janai farms, Badlapur, Maharashtra 421503
           </p>
-          <p className="text-gray-400">📞 +91 9XXXXXXXXX</p>
+          <p className="text-gray-400">📞 +91 8767048880</p>
           <p className="text-gray-400">✉️ info@vrindavanfarm.com</p>
 
           {/* CTA */}

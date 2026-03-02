@@ -16,12 +16,12 @@ const images = [
 
 export default function SignatureExperiences() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] py-24 sm:py-12 -mt-16">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] py-0 sm:py-10 -mt-6 sm:-mt-16">
 
       {/* Soft Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-green-100 rounded-full blur-[120px] opacity-40"></div>
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[350px] sm:w-[500px] h-[350px] sm:h-[500px] bg-green-100 rounded-full blur-[120px] opacity-40"></div>
 
-      <div className="relative max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch min-h-[620px]">
+      <div className="relative max-w-6xl mx-auto px-5 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center lg:items-stretch min-h-auto lg:min-h-[620px]">
 
         {/* LEFT SIDE - IMAGE SLIDER */}
         <Swiper
@@ -33,7 +33,7 @@ export default function SignatureExperiences() {
           }}
           speed={900}
           loop
-          className="w-full h-full rounded-1xl overflow-hidden shadow-2xl"
+          className="w-full h-[320px] sm:h-[450px] lg:h-full rounded-2xl overflow-hidden shadow-2xl"
         >
           {images.map((img, index) => (
             <SwiperSlide key={index} className="relative w-full h-full group">
@@ -48,23 +48,23 @@ export default function SignatureExperiences() {
           ))}
         </Swiper>
 
-        {/* RIGHT SIDE - CONTENT WITH SCROLL TRIGGER */}
+        {/* RIGHT SIDE - CONTENT */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8 }}
-          className="h-full flex flex-col justify-center space-y-8"
+          className="flex flex-col justify-center space-y-6 sm:space-y-8"
         >
-          <span className="uppercase tracking-[0.5em] text-xs text-gray-500 font-[var(--font-montserrat)]">
+          <span className="uppercase tracking-[0.4em] sm:tracking-[0.5em] text-[10px] sm:text-xs text-gray-500 font-[var(--font-montserrat)]">
             Our Signature Experiences
           </span>
 
-          <h2 className="text-4xl sm:text-5xl font-[var(--font-playfair)] font-bold bg-gradient-to-r from-green-700 via-green-500 to-orange-400 bg-clip-text text-transparent leading-tight">
+          <h2 className="text-3xl sm:text-5xl font-[var(--font-playfair)] font-bold bg-gradient-to-r from-green-700 via-green-500 to-orange-400 bg-clip-text text-transparent leading-tight">
             Reconnect With Nature, Rediscover Yourself
           </h2>
 
-          <p className="text-gray-700 text-lg leading-relaxed max-w-lg">
+          <p className="text-gray-700 text-base sm:text-lg leading-relaxed max-w-lg">
             Step away from city chaos and embrace serene farm mornings,
             organic farm-fresh meals, refreshing rain dances, and magical
             bonfire evenings under starlit skies. Every experience is crafted
@@ -73,20 +73,26 @@ export default function SignatureExperiences() {
           </p>
 
           {/* Highlights */}
-          <div className="grid gap-4 text-gray-700">
+          <div className="grid gap-3 sm:gap-4 text-gray-700">
             <div className="flex items-start gap-3">
-              <span className="text-green-600 text-xl">✓</span>
-              <p>Authentic farm-to-table dining experiences</p>
+              <span className="text-green-600 text-lg sm:text-xl">✓</span>
+              <p className="text-sm sm:text-base">
+                Authentic farm-to-table dining experiences
+              </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <span className="text-green-600 text-xl">✓</span>
-              <p>Spacious lawns for weddings & celebrations</p>
+              <span className="text-green-600 text-lg sm:text-xl">✓</span>
+              <p className="text-sm sm:text-base">
+                Spacious lawns for weddings & celebrations
+              </p>
             </div>
 
             <div className="flex items-start gap-3">
-              <span className="text-green-600 text-xl">✓</span>
-              <p>Relaxing pool, rain dance & bonfire nights</p>
+              <span className="text-green-600 text-lg sm:text-xl">✓</span>
+              <p className="text-sm sm:text-base">
+                Relaxing pool, rain dance & bonfire nights
+              </p>
             </div>
           </div>
 
@@ -94,7 +100,7 @@ export default function SignatureExperiences() {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="mt-6 px-8 py-3 bg-gradient-to-r from-orange-400 to-orange-500 text-white rounded-full shadow-xl transition-all duration-300 w-fit"
+            className="mt-4 sm:mt-6 px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base bg-gradient-to-r from-orange-400 to-orange-500 text-white rounded-full shadow-xl transition-all duration-300 w-fit"
           >
             Explore Experiences →
           </motion.button>

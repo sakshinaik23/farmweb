@@ -96,18 +96,14 @@ export default function Navbar() {
 
             return (
               <Link key={link.name} href={link.href} className="relative group">
-                <span
-                  className={`transition ${
-                    isActive ? "font-semibold" : "opacity-90"
-                  }`}
-                >
+                <span className={isActive ? "font-semibold" : "opacity-90"}>
                   {link.name}
                 </span>
 
-                {/* Animated underline */}
                 <span
                   className={`
-                    absolute left-0 -bottom-2 h-[2px] bg-white
+                    absolute left-0 -bottom-2 h-[2px]
+                    ${hasBg ? "bg-green-900" : "bg-white"}
                     transition-all duration-300
                     ${isActive ? "w-full" : "w-0 group-hover:w-full"}
                   `}
@@ -122,12 +118,10 @@ export default function Navbar() {
           <Link
             href="/booking"
             className="
-              relative px-8 py-3 rounded-full
+              px-8 py-3 rounded-full
               uppercase tracking-widest text-sm font-semibold
               text-white bg-gradient-to-r from-green-700 to-green-900
-              shadow-lg overflow-hidden
-              hover:shadow-green-800/40 hover:scale-105
-              transition-all duration-300
+              shadow-lg hover:scale-105 transition-all duration-300
             "
           >
             Contact Us
@@ -138,28 +132,29 @@ export default function Navbar() {
         <div className="ml-auto md:hidden">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="relative w-8 h-8 flex flex-col justify-center items-center"
+            className="w-8 h-8 flex flex-col justify-center items-center gap-1"
           >
+            {/* Always 3 lines (no cross animation) */}
             <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
-                mobileMenuOpen ? "rotate-45 translate-y-1.5" : ""
+              className={`block w-6 h-0.5 transition-all duration-300 ${
+                hasBg ? "bg-green-900" : "bg-white"
               }`}
             />
             <span
-              className={`block w-6 h-0.5 bg-white my-1 transition-all duration-300 ${
-                mobileMenuOpen ? "opacity-0" : ""
+              className={`block w-6 h-0.5 transition-all duration-300 ${
+                hasBg ? "bg-green-900" : "bg-white"
               }`}
             />
             <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${
-                mobileMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+              className={`block w-6 h-0.5 transition-all duration-300 ${
+                hasBg ? "bg-green-900" : "bg-white"
               }`}
             />
           </button>
         </div>
       </div>
 
-      {/* MOBILE MENU WITH ANIMATION */}
+      {/* MOBILE MENU */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div

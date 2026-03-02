@@ -13,7 +13,6 @@ interface Experience {
   title: string;
   desc: string;
   tags: string[];
-  price: string;
   image: string;
 }
 
@@ -22,42 +21,36 @@ const experiences: Experience[] = [
     title: "Farm Stay Experience",
     desc: "Wake up to birds, fresh air, and peaceful greenery all around you.",
     tags: ["Family Friendly", "Nature", "Relaxing"],
-    price: "From ₹2000 / night",
     image: "/images/exp1.webp",
   },
   {
     title: "Day Picnic",
     desc: "One-day escape packed with food, games, pool fun & relaxation.",
     tags: ["Includes Lunch", "Pool Fun", "Games"],
-    price: "₹1200 / person",
     image: "/images/exp6.webp",
   },
   {
     title: "Event Celebrations",
     desc: "Celebrate birthdays, engagements & corporate events in open lawns.",
     tags: ["Decor", "Music", "Large Space"],
-    price: "Custom Packages",
     image: "/images/exp3.webp",
   },
   {
     title: "Pool & Rain Dance",
     desc: "High-energy DJ rain dance & refreshing pool activities.",
     tags: ["DJ", "Water Fun", "Kids Friendly"],
-    price: "Included in Picnic",
     image: "/images/exp2.webp",
   },
   {
     title: "Homely Food",
     desc: "Freshly prepared authentic meals with local flavors.",
     tags: ["Pure Veg", "Local Taste", "Fresh"],
-    price: "Included",
     image: "/images/include1.webp",
   },
   {
     title: "Comfort & Relaxation",
     desc: "Spacious rooms designed for comfort & peace of mind.",
     tags: ["AC Rooms", "Clean", "Peaceful"],
-    price: "From ₹2500 / night",
     image: "/images/exp4.webp",
   },
 ];
@@ -71,7 +64,7 @@ export default function ExperienceCarousel() {
       id="experiences"
       className="relative py-20 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2] overflow-hidden"
     >
-      {/* Soft Luxury Background Glow */}
+      {/* Soft Background Glow */}
       <div className="absolute -top-32 left-0 w-96 h-96 bg-green-200 blur-3xl opacity-20 rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-200 blur-3xl opacity-20 rounded-full"></div>
 
@@ -127,7 +120,7 @@ export default function ExperienceCarousel() {
                     className="object-cover transition duration-700 group-hover:scale-105"
                   />
 
-                  {/* Softer Overlay */}
+                  {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
                   {/* CONTENT */}
@@ -141,7 +134,7 @@ export default function ExperienceCarousel() {
                     </p>
 
                     {/* TAGS */}
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap gap-2 mb-6">
                       {item.tags.map((tag, i) => (
                         <span
                           key={i}
@@ -152,16 +145,10 @@ export default function ExperienceCarousel() {
                       ))}
                     </div>
 
-                    {/* PRICE + BUTTON */}
-                    <div className="flex items-center justify-between max-w-md">
-                      <span className="font-semibold text-base">
-                        {item.price}
-                      </span>
-
-                      <button className="px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-orange-300 hover:scale-105 transition text-sm font-semibold shadow-lg">
-                        Explore →
-                      </button>
-                    </div>
+                    {/* BUTTON ONLY */}
+                    <button className="px-6 py-2.5 rounded-full bg-gradient-to-r from-orange-400 to-orange-300 hover:scale-105 transition text-sm font-semibold shadow-lg">
+                      Explore →
+                    </button>
                   </div>
                 </motion.div>
               )}
@@ -169,7 +156,7 @@ export default function ExperienceCarousel() {
           ))}
         </Swiper>
 
-        {/* PREMIUM NAVIGATION BUTTONS */}
+        {/* NAVIGATION BUTTONS */}
         <button className="exp-prev absolute top-1/2 -left-8 -translate-y-1/2 w-16 h-16 rounded-full bg-white/70 backdrop-blur-md border border-white/40 shadow-xl flex items-center justify-center text-gray-800 hover:scale-110 hover:bg-green-700 hover:text-white transition-all duration-300 z-20">
           ‹
         </button>

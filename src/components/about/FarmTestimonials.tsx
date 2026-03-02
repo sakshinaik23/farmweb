@@ -28,13 +28,14 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-20 bg-[#fdfcf9] overflow-hidden">
+    <section className=" py-10 md:py-20 bg-[#f8f6f2] overflow-hidden">
+      
       {/* Heading */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-16 px-4">
         <p className="uppercase tracking-[0.3em] text-xs text-gray-400">
           Guest Experience
         </p>
-        <h2 className="mt-4 text-4xl sm:text-5xl font-bold text-gray-900">
+        <h2 className="mt-4 text-3xl sm:text-5xl font-bold text-gray-900">
           What Our Guests Say
         </h2>
       </div>
@@ -42,27 +43,42 @@ export default function TestimonialsSection() {
       {/* Horizontal Scroll */}
       <div className="relative w-full overflow-hidden">
         <motion.div
-          className="flex gap-10 w-max"
-          animate={{ x: ["0%", "-50%"] }} // move from start to half width
-          transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
+          className="flex gap-6 sm:gap-10 w-max px-4 sm:px-0"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ 
+            repeat: Infinity, 
+            duration: 45,   // slower for better readability
+            ease: "linear" 
+          }}
         >
-          {/* Duplicate testimonials for smooth scrolling */}
           {[...testimonials, ...testimonials].map((item, index) => (
             <div
               key={index}
-              className="backdrop-blur-xl bg-white/60 border border-white/70 shadow-xl rounded-3xl p-10 flex flex-col justify-between flex-shrink-0 w-150"
+              className="
+                backdrop-blur-xl 
+                bg-white/60 
+                border border-white/70 
+                shadow-xl 
+                rounded-3xl 
+                p-6 sm:p-10
+                flex flex-col justify-between 
+                flex-shrink-0 
+                w-[280px] sm:w-[600px]
+              "
             >
-              <p className="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
+              <p className="text-sm sm:text-lg text-gray-700 leading-relaxed mb-6">
                 “{item.text}”
               </p>
+
               <div className="flex gap-1 mb-5">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className="w-4 h-5 text-amber-500 fill-amber-500"
+                    className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500 fill-amber-500"
                   />
                 ))}
               </div>
+
               <div>
                 <h4 className="text-sm sm:text-base font-semibold text-gray-900">
                   {item.name}

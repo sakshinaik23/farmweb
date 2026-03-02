@@ -36,7 +36,7 @@ export default function EventEnquiryForm() {
   };
 
   return (
-    <section className="relative py-14 sm:py-20 bg-[#f8f6f2] overflow-hidden">
+    <section className="relative py-5 sm:py-10 bg-[#f8f6f2] overflow-hidden">
 
       {/* Subtle background glow */}
       <div className="absolute -top-40 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-green-100 blur-3xl opacity-30 rounded-full"></div>

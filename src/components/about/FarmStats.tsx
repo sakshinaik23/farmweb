@@ -12,7 +12,7 @@ const stats = [
 
 export default function FarmStats() {
   return (
-    <section className="relative py-20 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2]">
+    <section className="relative py-10 md:py-20 bg-gradient-to-b from-[#f8f6f2] via-white to-[#f8f6f2]">
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Heading */}
         <div className="text-center mb-16">
