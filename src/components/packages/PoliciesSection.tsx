@@ -28,7 +28,7 @@ const policies = [
 
 export default function PoliciesSection() {
   return (
-    <section className="bg-gray-50 py-20 md:py-28 px-6">
+    <section className="bg-[#f8f6f2] py-20 md:py-28 px-6">
       <div className="max-w-6xl mx-auto">
 
         {/* Section Header */}
