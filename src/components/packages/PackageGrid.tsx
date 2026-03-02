@@ -5,7 +5,7 @@ import { packages } from "@/data/packages";
 
 export default function PackageGrid() {
   return (
-    <section className="bg-gray-100 py-16 md:py-24 px-6">
+    <section className="bg-[#f8f6f2] py-16 md:py-24 px-6">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-2 gap-10">
         {packages.map((pkg, index) => (
           <motion.div

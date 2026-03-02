@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function CTA() {
   return (
-    <section className="bg-gray-100 py-16 sm:py-20 md:py-24 px-6">
+    <section className="bg-[#f8f6f2] py-16 sm:py-20 md:py-24 px-6 ">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -13,7 +13,7 @@ export default function CTA() {
         viewport={{ once: true }}
         className="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-10 sm:p-14 md:p-16 text-center"
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xlfont-[var(--font-playfair)] font-bold text-gray-900 leading-tight">
           Ready to Experience Vrindavan Farms?
         </h2>
 

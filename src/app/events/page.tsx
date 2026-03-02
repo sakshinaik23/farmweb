@@ -11,8 +11,8 @@ export default function EventsPage() {
       <EventsHero />
       <EventTypesSection />
       <EventExperienceSection />
-      <EventEnquiryForm /> 
       <EventGallerySection />
+      <EventEnquiryForm /> 
       <EventCTA />
     </main>
   );

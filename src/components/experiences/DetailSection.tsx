@@ -56,8 +56,8 @@ export default function DetailSection({
           viewport={{ once: true }}
           className="space-y-4"
         >
-          <h2 className="text-3xl font-bold">{title}</h2>
-          <p className="text-gray-700 leading-relaxed">{desc}</p>
+          <h2 className="font-[var(--font-playfair)] text-3xl font-bold">{title}</h2>
+          <p className="font-[var(--font-playfair)] text-gray-700 leading-relaxed">{desc}</p>
 
           {highlights && (
             <ul className="space-y-2 text-gray-600">

@@ -56,7 +56,7 @@ const items = [
 
 export default function AmenitiesSection() {
   return (
-    <section className="bg-gray-100 py-20 md:py-28 px-6">
+    <section className="bg-[#f8f6f2] py-20 md:py-28 px-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Section Header */}

@@ -1,41 +1,84 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
-export default function Hero() {
+export default function ExperienceHero() {
   return (
-    <section className="relative w-full min-h-[85vh] md:min-h-screen overflow-hidden text-white">
-      
-      {/* Background Image */}
-      <Image
-        src="/images/experience/hero.png"
-        alt="Experiences at Vrindavan Farms"
-        fill
-        priority
-        sizes="100vw"
-        className="object-cover object-center"
-      />
+    <section className="relative w-full h-[35vh] min-h-[320px] overflow-hidden">
 
-      {/* Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70 z-0" />
-
-      {/* Content */}
+      {/* Background Image with subtle zoom */}
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9 }}
-        className="relative z-10 flex flex-col items-center justify-center text-center px-6 md:px-10 max-w-5xl mx-auto min-h-[85vh] md:min-h-screen"
+        initial={{ scale: 1.1 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 6, ease: "easeOut" }}
+        className="absolute inset-0"
       >
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-          Experiences at <span className="text-green-400">Vrindavan Farms</span>
-        </h1>
-
-        <p className="mt-6 text-base sm:text-lg md:text-xl text-white/90 max-w-2xl leading-relaxed">
-          At Vrindavan Farms, we combine nature, comfort, and exciting activities
-          to create memorable experiences for families, friends, and corporate groups.
-        </p>
+        <Image
+          src="/images/experience/hero.png"
+          alt="Experiences at Vrindavan Farms"
+          fill
+          priority
+          className="object-cover"
+        />
       </motion.div>
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/70" />
+
+      {/* Soft Glow Accent */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[200px] bg-green-700/30 blur-[120px] opacity-60" />
+
+      {/* Center Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center text-white h-full px-8">
+
+        {/* Animated Heading */}
+        <motion.h1
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.9, ease: "easeOut" }}
+          className="uppercase text-5xl sm:text-6xl font-bold tracking-wide font-[var(--font-playfair)]"
+        >
+          Experiences
+        </motion.h1>
+
+        {/* Decorative Line */}
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: "80px" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="h-[2px] bg-white mt-4"
+        />
+
+        {/* Breadcrumb */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="mt-4 text-sm flex flex-wrap justify-center gap-2"
+        >
+          <Link
+            href="/"
+            className="text-white/80 hover:text-orange-400 transition-colors duration-300"
+          >
+            Home
+          </Link>
+
+          <span className="text-white/50">/</span>
+
+          <Link
+            href="/experience"
+            className="text-white/80 hover:text-orange-400 transition-colors duration-300"
+          >
+            Experience
+          </Link>
+        </motion.div>
+
+      </div>
     </section>
   );
 }

@@ -37,15 +37,56 @@ export default function EventTypesSection() {
       <div className="relative max-w-7xl mx-auto px-6">
 
         {/* Header */}
-        <div className="text-center mb-20">
-          <p className="uppercase tracking-[0.5em] text-xs text-gray-500">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+          className="text-center mb-20"
+        >
+          {/* Small Label */}
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.6 }}
+            className="uppercase tracking-[0.5em] text-xs text-gray-500"
+          >
             Events
-          </p>
+          </motion.p>
 
-          <h2 className="mt-4 text-4xl sm:text-5xl font-bold text-gray-900">
+          {/* Main Heading */}
+          <motion.h2
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.7 }}
+            className="mt-4 text-4xl sm:text-5xl font-bold text-gray-900"
+          >
             Celebrate Every Occasion With Us
-          </h2>
-        </div>
+          </motion.h2>
+
+          {/* Tagline */}
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.8 }}
+            className="mt-6 text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed"
+          >
+            From birthdays to corporate outings — host unforgettable events surrounded by nature.
+          </motion.p>
+        </motion.div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
@@ -59,7 +100,7 @@ export default function EventTypesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.7, delay: index * 0.15 }}
-                className="group bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500"
+                className="group bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
               >
                 {/* Icon */}
                 <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mb-6 group-hover:bg-green-700 transition-all duration-500">

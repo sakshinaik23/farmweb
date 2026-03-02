@@ -2,7 +2,7 @@ export interface ExperienceItem {
   id: string;
   title: string;
   desc: string;
-  images: string[]; // ← changed from image to images array
+  images: string[]; 
   highlights?: string[];
 }
 
