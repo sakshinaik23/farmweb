@@ -20,6 +20,6 @@ export async function connectDB() {
   }
 
   cached.conn = await cached.promise;
-  console.log("✅ MongoDB Atlas Connected");
+  console.log(" MongoDB Atlas Connected");
   return cached.conn;
 }

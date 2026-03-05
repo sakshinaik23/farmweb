@@ -25,7 +25,7 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
 });
 
-// SEO METADATA
+
 export const metadata: Metadata = {
   title: "Vrindavan Farms | Nature Stay & Celebration Lawn in Badlapur",
   description:
@@ -72,7 +72,7 @@ export const metadata: Metadata = {
   
 };
 
-// VIEWPORT (Mobile Responsive)
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,

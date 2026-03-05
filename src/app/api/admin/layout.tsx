@@ -20,7 +20,7 @@ export default function AdminLayout({
   return (
     <div className="flex min-h-screen bg-[#f8f6f2]">
       
-      {/* SIDEBAR */}
+    
       <aside className="w-64 bg-green-900 text-white p-6 hidden md:block">
         <h2 className="text-2xl font-bold mb-10">Vrindavan Admin</h2>
 
@@ -41,7 +41,7 @@ export default function AdminLayout({
         </nav>
       </aside>
 
-      {/* MAIN CONTENT */}
+     
       <main className="flex-1 p-8">{children}</main>
     </div>
   );

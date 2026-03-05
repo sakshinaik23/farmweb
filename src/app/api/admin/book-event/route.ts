@@ -5,14 +5,14 @@ import Booking from "@/models/Booking";
 
 export async function POST(req: Request) {
   try {
-    // Connect to MongoDB
+   
     await connectDB();
 
-    // Read body
+  
     const body = await req.json();
-    console.log("BODY RECEIVED:", body); // Debug line to see what frontend is sending
+    console.log("BODY RECEIVED:", body); 
 
-    // Validation: check eventDate
+
     if (!body.eventDate) {
       return NextResponse.json(
         { success: false, message: "Event date required" },
@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       );
     }
 
-    // Optional: check other required fields
+    
     if (!body.name || !body.phone) {
       return NextResponse.json(
         { success: false, message: "Name and phone are required" },
@@ -28,20 +28,20 @@ export async function POST(req: Request) {
       );
     }
 
-    // Create booking
+  
     const booking = await Booking.create({
       ...body,
       bookingType: "event",
       eventDate: new Date(body.eventDate),
     });
 
-    console.log("✅ Booking created:", booking);
+    console.log("Booking created:", booking);
 
     // Return response
     return NextResponse.json({ success: true, booking });
   } catch (error: any) {
     // Show full error in terminal
-    console.error("❌ EVENT BOOKING ERROR:", error);
+    console.error(" EVENT BOOKING ERROR:", error);
 
     // Return actual error message
     return NextResponse.json(

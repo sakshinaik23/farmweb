@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FarmWeb – Vrindavan Farms Website
 
-## Getting Started
+FarmWeb is the official web platform for **Vrindavan Farms**, built using **Next.js App Router**.  
+The application provides information about farm experiences, events, stay packages, and allows users to submit booking and enquiry requests.
 
-First, run the development server:
+---
+
+# Project Overview
+
+FarmWeb is a modern full-stack web application designed to:
+
+- Showcase Vrindavan Farms experiences
+- Display farm stay packages
+- Provide event hosting information
+- Allow visitors to submit booking requests
+- Store booking data in a database
+- Provide admin APIs to manage booking data
+
+The project uses **Next.js full-stack architecture**, where both **frontend UI and backend APIs** are implemented inside the same project.
+
+---
+
+# Tech Stack
+
+## Frontend
+
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
+
+## Backend
+
+- Next.js API Routes
+- Node.js runtime
+- MongoDB Atlas (Cloud Database)
+- Mongoose ODM
+
+## Deployment
+
+- Node.js server
+- DigitioHub VPS
+- Nginx (recommended reverse proxy)
+- PM2 (recommended process manager)
+
+---
+
+# Local Development Setup
+
+## 1. Clone Repository
+
+```bash
+git clone <repository-url>
+cd farmweb
+```
+
+## 2. Install Dependencies
+
+```bash
+npm install
+```
+
+or
+
+```bash
+yarn install
+```
+
+## 3. Setup Environment Variables
+
+Create a `.env.local` file in the root directory.
+
+Example configuration:
+
+```
+MONGODB_URI=your_mongodb_atlas_connection_string
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+These variables are required for database connectivity and environment configuration.
+
+---
+
+## 4. Run Development Server
+
+Start the local development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the application in the browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application will automatically reload whenever source files are updated.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+# Production Build
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create an optimized production build:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+Start the production server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+# Key Features
+
+- Built using **Next.js App Router**
+- Integrated backend using **Next.js API routes**
+- **MongoDB Atlas cloud database integration**
+- Modular and scalable architecture
+- Responsive UI
+- SEO optimized pages
+- Booking enquiry system for events and farm stays
+
+---
+
+# Development Status
+
+## Completed
+
+- Homepage UI
+- About page
+- Experiences page
+- Events page
+- Stay packages page
+- Component architecture
+
+---
+
+## In Progress
+
+- MongoDB Atlas database integration
+- Booking API endpoints
+- Admin booking management APIs
+- Form validation enhancements
+- Admin dashboard improvements
+- Production deployment configuration
+
+---
+
+# License
+
+This project is maintained internally for **Vrindavan Farms** and **DigitioHub**.
