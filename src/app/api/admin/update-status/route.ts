@@ -5,8 +5,14 @@ import Booking from "@/models/Booking";
 export async function PATCH(req: Request) {
   try {
     await connectDB();
-
     const { id, status } = await req.json();
+
+    if (!id || !status) {
+      return NextResponse.json(
+        { success: false, message: "Missing id or status" },
+        { status: 400 }
+      );
+    }
 
     const updated = await Booking.findByIdAndUpdate(
       id,

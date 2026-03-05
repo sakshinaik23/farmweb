@@ -6,7 +6,9 @@ export async function GET() {
   try {
     await connectDB();
 
-    const bookings = await Booking.find().sort({ createdAt: -1 });
+    const bookings = await Booking.find()
+      .sort({ createdAt: -1 })
+      .lean();
 
     return NextResponse.json({
       success: true,
