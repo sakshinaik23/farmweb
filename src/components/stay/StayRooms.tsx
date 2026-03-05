@@ -30,11 +30,6 @@ const rooms = [
     title: "Premium Deluxe Room",
     highlights: ["Elegant Interiors", "Comfort & Privacy", "Modern Amenities"],
   },
-  {
-    image: "/images/room6.webp",
-    title: "Premium Comfort Suite",
-    highlights: ["Spacious Layout", "Peaceful Stay", "Family Friendly"],
-  },
 ];
 
 const containerVariant: Variants = {

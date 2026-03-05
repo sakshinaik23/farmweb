@@ -20,30 +20,49 @@ export default function EventEnquiryForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // ✅ UPDATED SUBMIT FUNCTION (CONNECTED TO BACKEND)
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
-    alert("Your enquiry has been submitted. We will contact you shortly.");
-    setFormData({
-      name: "",
-      phone: "",
-      email: "",
-      eventType: "",
-      eventDate: "",
-      guests: "",
-      message: "",
-    });
+
+    try {
+      const res = await fetch("/api/admin/book-event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong");
+      }
+
+      alert("Your enquiry has been submitted successfully!");
+
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        eventType: "",
+        eventDate: "",
+        guests: "",
+        message: "",
+      });
+
+    } catch (error: any) {
+      alert(error.message || "Submission failed");
+    }
   };
 
   return (
     <section className="relative py-5 sm:py-10 bg-[#f8f6f2] overflow-hidden">
 
-      {/* Subtle background glow */}
       <div className="absolute -top-40 right-0 w-72 h-72 sm:w-96 sm:h-96 bg-green-100 blur-3xl opacity-30 rounded-full"></div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,7 +84,6 @@ export default function EventEnquiryForm() {
           </p>
         </motion.div>
 
-        {/* Form */}
         <motion.form
           onSubmit={handleSubmit}
           initial={{ opacity: 0, y: 50 }}
@@ -79,11 +97,8 @@ export default function EventEnquiryForm() {
                      border border-white/40 
                      transition-all duration-500"
         >
-          <div className="absolute inset-0 rounded-2xl sm:rounded-3xl bg-gradient-to-r from-green-100 via-transparent to-orange-100 opacity-20 pointer-events-none"></div>
-
           <div className="relative grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
 
-            {/* Full Name */}
             <div className="flex flex-col">
               <label className="text-sm font-medium text-gray-800">
                 Full Name
@@ -94,16 +109,11 @@ export default function EventEnquiryForm() {
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
-                           rounded-lg sm:rounded-xl 
-                           border border-gray-300 bg-white 
-                           focus:outline-none focus:ring-2 
-                           focus:ring-green-700 focus:border-green-700 
-                           transition-all duration-300"
+                className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
+                           focus:outline-none focus:ring-2 focus:ring-green-700"
               />
             </div>
 
-            {/* Contact Number */}
             <div className="flex flex-col">
               <label className="text-sm font-medium text-gray-800">
                 Contact Number
@@ -114,16 +124,11 @@ export default function EventEnquiryForm() {
                 required
                 value={formData.phone}
                 onChange={handleChange}
-                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
-                           rounded-lg sm:rounded-xl 
-                           border border-gray-300 bg-white 
-                           focus:outline-none focus:ring-2 
-                           focus:ring-green-700 focus:border-green-700 
-                           transition-all duration-300"
+                className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
+                           focus:outline-none focus:ring-2 focus:ring-green-700"
               />
             </div>
 
-            {/* Email */}
             <div className="flex flex-col">
               <label className="text-sm font-medium text-gray-800">
                 Email Address
@@ -133,16 +138,11 @@ export default function EventEnquiryForm() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
-                           rounded-lg sm:rounded-xl 
-                           border border-gray-300 bg-white 
-                           focus:outline-none focus:ring-2 
-                           focus:ring-green-700 focus:border-green-700 
-                           transition-all duration-300"
+                className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
+                           focus:outline-none focus:ring-2 focus:ring-green-700"
               />
             </div>
 
-            {/* Event Type */}
             <div className="flex flex-col">
               <label className="text-sm font-medium text-gray-800">
                 Event Type
@@ -152,12 +152,8 @@ export default function EventEnquiryForm() {
                 required
                 value={formData.eventType}
                 onChange={handleChange}
-                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
-                           rounded-lg sm:rounded-xl 
-                           border border-gray-300 bg-white 
-                           focus:outline-none focus:ring-2 
-                           focus:ring-green-700 focus:border-green-700 
-                           transition-all duration-300"
+                className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
+                           focus:outline-none focus:ring-2 focus:ring-green-700"
               >
                 <option value="">Select Event</option>
                 <option>Birthday Celebration</option>
@@ -167,7 +163,6 @@ export default function EventEnquiryForm() {
               </select>
             </div>
 
-            {/* Event Date */}
             <div className="flex flex-col">
               <label className="text-sm font-medium text-gray-800">
                 Preferred Event Date
@@ -178,16 +173,11 @@ export default function EventEnquiryForm() {
                 required
                 value={formData.eventDate}
                 onChange={handleChange}
-                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
-                           rounded-lg sm:rounded-xl 
-                           border border-gray-300 bg-white 
-                           focus:outline-none focus:ring-2 
-                           focus:ring-green-700 focus:border-green-700 
-                           transition-all duration-300"
+                className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
+                           focus:outline-none focus:ring-2 focus:ring-green-700"
               />
             </div>
 
-            {/* Guests */}
             <div className="flex flex-col">
               <label className="text-sm font-medium text-gray-800">
                 Expected Guests
@@ -198,19 +188,14 @@ export default function EventEnquiryForm() {
                 required
                 value={formData.guests}
                 onChange={handleChange}
-                className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
-                           rounded-lg sm:rounded-xl 
-                           border border-gray-300 bg-white 
-                           focus:outline-none focus:ring-2 
-                           focus:ring-green-700 focus:border-green-700 
-                           transition-all duration-300"
+                className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
+                           focus:outline-none focus:ring-2 focus:ring-green-700"
               />
             </div>
 
           </div>
 
-          {/* Message */}
-          <div className="mt-6 sm:mt-8 flex flex-col">
+          <div className="mt-6 flex flex-col">
             <label className="text-sm font-medium text-gray-800">
               Additional Details
             </label>
@@ -219,27 +204,17 @@ export default function EventEnquiryForm() {
               rows={4}
               value={formData.message}
               onChange={handleChange}
-              className="mt-2 w-full px-3 sm:px-4 py-2.5 sm:py-3 
-                         rounded-lg sm:rounded-xl 
-                         border border-gray-300 bg-white 
-                         focus:outline-none focus:ring-2 
-                         focus:ring-green-700 focus:border-green-700 
-                         transition-all duration-300"
+              className="mt-2 w-full px-4 py-3 rounded-xl border border-gray-300 
+                         focus:outline-none focus:ring-2 focus:ring-green-700"
               placeholder="Tell us more about your event..."
             />
           </div>
 
-          {/* Submit Button */}
-          <div className="mt-8 sm:mt-10 text-center">
+          <div className="mt-8 text-center">
             <button
               type="submit"
-              className="px-8 sm:px-12 py-3 sm:py-4 
-                         bg-green-700 text-white 
-                         rounded-full font-semibold 
-                         text-sm sm:text-base
-                         hover:bg-green-800 hover:scale-[1.03] 
-                         active:scale-95 transition-all duration-300 
-                         shadow-lg"
+              className="px-10 py-3 bg-green-700 text-white rounded-full 
+                         font-semibold hover:bg-green-800 transition-all"
             >
               Submit
             </button>
